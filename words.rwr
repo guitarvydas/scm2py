@@ -1,11 +1,11 @@
 words {
-  main [unit+] = ‛«unit»’
-  unit_comment [x] = ‛«x»’
-  unit_string [x] = ‛«x»’
-  unit_number [x] = ‛«x»’
-  unit_space [x] = ‛«x»’
-  unit_separator [x] = ‛«x»’
-  unit_atom [x] = ‛«x»’
+  main [item+] = ‛«item»’
+  item_comment [x] = ‛«x»’
+  item_string [x] = ‛«x»’
+  item_number [x] = ‛«x»’
+  item_space [x] = ‛«x»’
+  item_separator [x] = ‛«x»’
+  item_atom [x] = ‛«x»’
 
   atom [atomchar+] = ‛❲«atomchar»❳’
   atomchar [c] = ‛«c»’
@@ -18,7 +18,7 @@ words {
   number [d+] = ‛«d»’
 
   comment [_semi notNL* nl] = ‛⌈«notNL»⌉«nl»’
-  nl [c] = ‛«c»’
+  nl [c] = ‛❡’
   notNL [c] = ‛«c»’
 
 }

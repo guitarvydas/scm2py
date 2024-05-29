@@ -1,6 +1,6 @@
 words {
-  main = unit+
-  unit =
+  main = item+
+  item =
     | comment -- comment
     | string -- string
     | number -- number
