@@ -7,8 +7,11 @@ support = ""
 grammar_name2 = ""
 support2 = ""
 
+grammar_name3 = ""
+support3 = ""
+
 def main ():
-    global grammar_name, support, grammar_name2, support2
+    global grammar_name, support, grammar_name2, support2, grammar_name3, support3
 
     root_project = sys.argv [1] 
     root_0D = sys.argv [2]
@@ -21,6 +24,11 @@ def main ():
     grammar_name2 = sys.argv [i]
     i += 1
     support2 = sys.argv [i]
+    i += 1
+
+    grammar_name3 = sys.argv [i]
+    i += 1
+    support3 = sys.argv [i]
     i += 1
 
     arg = sys.argv [i]
@@ -75,6 +83,23 @@ def start_function (root_project, root_0D, arg, main_container):
 
     g = zd.new_datum_string (support2)
     msg = zd.make_message("support2", g)
+    zd.inject (main_container, msg)
+
+
+    g = zd.new_datum_string (grammar_name3)
+    msg = zd.make_message("grammar&#xa;name3", g)
+    zd.inject (main_container, msg)
+
+    g = zd.new_datum_string (grammar_name3 + ".ohm")
+    msg = zd.make_message("ohm3", g)
+    zd.inject (main_container, msg)
+
+    g = zd.new_datum_string (grammar_name3 + ".rwr")
+    msg = zd.make_message("rwr3", g)
+    zd.inject (main_container, msg)
+
+    g = zd.new_datum_string (support3)
+    msg = zd.make_message("support3", g)
     zd.inject (main_container, msg)
 
 

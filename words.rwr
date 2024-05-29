@@ -18,7 +18,7 @@ words {
   number [d+] = ‛«d»’
 
   comment [_semi notNL* nl] = ‛⌈«notNL»⌉«nl»’
-  nl [c] = ‛❡’
+  nl [c] = ‛«c»’
   notNL [c] = ‛«c»’
 
 }

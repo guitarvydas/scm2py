@@ -6,7 +6,7 @@ SRC=test.scm
 all:
 	./0D/das2json/das2json t2t.drawio
 	./0D/das2json/das2json transpile.drawio
-	python3 main.py . 0D/python words null.js unquote null.js ${SRC} main t2t.drawio.json transpile.drawio.json
+	python3 main.py . 0D/python words null.js unquote null.js scm null.js ${SRC} main t2t.drawio.json transpile.drawio.json
 
 #########
 

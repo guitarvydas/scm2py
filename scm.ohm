@@ -1,0 +1,26 @@
+scm {
+ Main = Item+
+ Item =
+   | "(" sym<"define"> List ListOrAtom ")" -- function
+   | "(" sym<"define"> Atom ListOrAtom ")" -- var
+   | comment -- comment
+   | number -- number
+   | string -- string
+   | List -- toplevel
+
+  List = "(" ListOrAtom* ")"
+  ListOrAtom =
+    | List
+    | Atom
+  Atom = "❲" upto<"❳">
+  bracket = "❲" | "❳"
+  sq = "'"
+
+  sym<s> = "❲" s "❳"
+  comment = "⌈" upto<"⌉">
+  number = digit+
+  string = dq upto<dq>
+  dq = "\""
+
+  upto<x> = (~x any)* x
+}

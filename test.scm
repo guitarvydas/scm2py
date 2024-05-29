@@ -2,11 +2,7 @@
   (cond ((null? args)
          accumulator)
         (else
-         (resolveArgsHelper 
-	   '(cdr args) 
-           (AppendInefficient accumulator
-             (list (value (car args) bindings)))
-	   '()
-           bindings)
-	  )))
-
+         (resolveArgsHelper (cdr args) 
+                              (AppendInefficient accumulator
+                                                 (list (value (car args) bindings)))
+                              bindings))))
