@@ -1,6 +1,6 @@
 scm {
   Main [Item+] = ‛«Item»’
-  Item_function [lb _def signature body rb] = ‛\ndef «signature»⤷\n«body»⤶\n«rb»’
+  Item_function [lb _def signature body rb] = ‛\n❲def❳ «signature»⤷\n«body»⤶\n«rb»’
   Item_var [lb _def name body rb] = ‛\n«name» = «body»’
   Item_comment [x] = ‛«x»’
   Item_number [x] = ‛«x»’
