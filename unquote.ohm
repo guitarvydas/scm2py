@@ -9,8 +9,19 @@ unquote {
   ListOrAtom =
     | List
     | Atom
-  Atom = "❲" notBracket* "❳"
-  bracket = "❲" | "❳"
-  notBracket = ~bracket any
+  Atom =
+    | sym
+    | string
+    | number
+  sym = "❲" upto<"❳">
+  comment = "⌈" upto<"⌉">
+  number = digit+
+  string = bq upto<eq>
+  bq = "“"
+  eq = "”"
   sq = "'"
+
+  upto<x> = (~x any)* x
+  
+  space += comment
 }
