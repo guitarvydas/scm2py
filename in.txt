@@ -1,0 +1,12 @@
+(script Sampler
+  (enter Sampler)
+  (push-fresh-accumulator)
+  (call Stuff 
+    (✓ (prefetch 1)
+       (peek-end
+	 (✓ (accept-and-append)
+	   (send-accumulator "✓"))
+	 (✗ (send-string "" "✗") )))
+    (✗ (send-string "" "✗") ))
+  (pop-accumulator)
+  (exit Sampler))

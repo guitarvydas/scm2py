@@ -1,0 +1,25 @@
+words {
+  main = unit+
+  unit =
+    | comment -- comment
+    | string -- string
+    | number -- number
+    | space -- space
+    | separator -- separator
+    | atom -- atom
+
+  atom = atomchar+
+  atomchar = ~separator any
+
+  separator = "(" | ")" | "'" | "`" | ",@" | "," | space
+
+  string = dq notDQ* dq
+  dq = "\""
+  notDQ = ~dq any
+  number = digit+
+
+  comment = ";" notNL* nl
+  nl = "\n"
+  notNL = ~nl any
+
+}

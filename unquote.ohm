@@ -1,0 +1,16 @@
+unquote {
+  Main = Item+
+  Item =
+    | sq List -- quotedlist
+    | sq Atom -- quotedatom
+    | any -- other
+
+  List = "(" ListOrAtom* ")"
+  ListOrAtom =
+    | List
+    | Atom
+  Atom = "❲" notBracket* "❳"
+  bracket = "❲" | "❳"
+  notBracket = ~bracket any
+  sq = "'"
+}

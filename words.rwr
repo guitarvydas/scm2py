@@ -1,0 +1,24 @@
+words {
+  main [unit+] = ‛«unit»’
+  unit_comment [x] = ‛«x»’
+  unit_string [x] = ‛«x»’
+  unit_number [x] = ‛«x»’
+  unit_space [x] = ‛«x»’
+  unit_separator [x] = ‛«x»’
+  unit_atom [x] = ‛«x»’
+
+  atom [atomchar+] = ‛❲«atomchar»❳’
+  atomchar [c] = ‛«c»’
+
+  separator [c] = ‛«c»’
+
+  string [dq1 notDQ* dq2] = ‛“«notDQ»”’
+  dq [c] = ‛«c»’
+  notDQ [c] = ‛«c»’
+  number [d+] = ‛«d»’
+
+  comment [_semi notNL* nl] = ‛⌈«notNL»⌉«nl»’
+  nl [c] = ‛«c»’
+  notNL [c] = ‛«c»’
+
+}
