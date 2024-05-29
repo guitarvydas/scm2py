@@ -11,6 +11,8 @@ scm {
   List = "(" ListOrAtom* ")"
   ListOrAtom =
     | List
+    | number
+    | string
     | Atom
   Atom = "❲" upto<"❳">
   bracket = "❲" | "❳"
@@ -19,8 +21,11 @@ scm {
   sym<s> = "❲" s "❳"
   comment = "⌈" upto<"⌉">
   number = digit+
-  string = dq upto<dq>
-  dq = "\""
+  string = bq upto<eq>
+  bq = "“"
+  eq = "”"
 
   upto<x> = (~x any)* x
+
+  space += comment
 }

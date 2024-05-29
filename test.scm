@@ -6,3 +6,5 @@
                               (AppendInefficient accumulator
                                                  (list (value (car args) bindings)))
                               bindings))))
+
+(newline)
