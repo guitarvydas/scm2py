@@ -10,6 +10,7 @@ scm {
   List [lb xs+ rb] = ‛«lb»«xs»«rb»’
   ListOrAtom_nullp [lb _null arg rb] = ‛ isinstance(«arg», list) ’
   ListOrAtom_stringeq [lb _stringeq arg1 arg2 rb] = ‛ («arg1» == «arg2») ’
+  ListOrAtom_let [lb _let lb2 letbinding+ rb2 body rb] = ‛«letbinding»\n«body»’
   ListOrAtom_list [x] = ‛«x»’
   ListOrAtom_number [x] = ‛«x»’
   ListOrAtom_string [x] = ‛«x»’
@@ -18,6 +19,9 @@ scm {
   bracket [c] = ‛«c»’
   sq [c] = ‛«c»’
 
+  LetBinding [lb atom val rb] = ‛\n«atom» = «val»’
+  Body [listOrAtom] = ‛«listOrAtom»’
+  
   sym [lb s rb] = ‛«lb»«s»«rb»’
   comment [lb uptorb] = ‛«lb»«uptorb»’
   number [ds+] = ‛«ds»’
