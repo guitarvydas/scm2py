@@ -1,6 +1,6 @@
 // remove special chars like "❲" and "❳"
 function scrubber (s) {
-   return s.replace (/❲/g, '').replace (/❳/g, ' ');
+    return decodeURI (s.replace (/❲/g, '').replace (/❳/g, ' '));
 }
 
 let fs = require('fs');

@@ -12,12 +12,12 @@ words {
 
   separator [c] = ‛«c»’
 
-  string [dq1 notDQ* dq2] = ‛“«notDQ»”’
+  string [dq1 notDQ* dq2] = ‛“«encodeURI (notDQ)»”’
   dq [c] = ‛«c»’
   notDQ [c] = ‛«c»’
   number [d+] = ‛«d»’
 
-  comment [_semi notNL* nl] = ‛⌈«notNL»⌉«nl»’
+  comment [_semi notNL* nl] = ‛⌈«encodeURI (notNL)»⌉«nl»’
   nl [c] = ‛«c»’
   notNL [c] = ‛«c»’
 
