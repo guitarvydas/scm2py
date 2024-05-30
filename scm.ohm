@@ -13,6 +13,7 @@ scm {
     | "(" sym<"null?"> ListOrAtom ")" -- nullp
     | "(" sym<"string=?"> ListOrAtom ListOrAtom")" -- stringeq
     | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
+    | "(" sym<"pair?"> ListOrAtom ")" -- pair
     | List -- list
     | number -- number
     | string -- string

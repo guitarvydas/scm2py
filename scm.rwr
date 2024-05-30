@@ -11,6 +11,7 @@ scm {
   ListOrAtom_nullp [lb _null arg rb] = ‛ isinstance(«arg», list) ’
   ListOrAtom_stringeq [lb _stringeq arg1 arg2 rb] = ‛ («arg1» == «arg2») ’
   ListOrAtom_let [lb _let lb2 letbinding+ rb2 body rb] = ‛«letbinding»\n«body»’
+  ListOrAtom_pair [lb _pair arg rb] = ‛ isintance («arg», list) ’
   ListOrAtom_list [x] = ‛«x»’
   ListOrAtom_number [x] = ‛«x»’
   ListOrAtom_string [x] = ‛«x»’
