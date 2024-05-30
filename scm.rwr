@@ -20,7 +20,7 @@ scm {
   sq [c] = ‛«c»’
 
   LetBinding [lb atom val rb] = ‛\n«atom» = «val»’
-  Body [listOrAtom] = ‛«listOrAtom»’
+  Expr [listOrAtom] = ‛«listOrAtom»’
   
   sym [lb s rb] = ‛«lb»«s»«rb»’
   comment [lb uptorb] = ‛«lb»«uptorb»’

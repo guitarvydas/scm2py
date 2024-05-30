@@ -12,7 +12,7 @@ scm {
   ListOrAtom =
     | "(" sym<"null?"> ListOrAtom ")" -- nullp
     | "(" sym<"string=?"> ListOrAtom ListOrAtom")" -- stringeq
-    | "(" sym<"let"> "(" LetBinding+ ")" Body ")" -- let
+    | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
     | List -- list
     | number -- number
     | string -- string
@@ -22,7 +22,7 @@ scm {
   sq = "'"
 
   LetBinding = "(" Atom ListOrAtom ")"
-  Body = ListOrAtom
+  Expr = ListOrAtom
 
   sym<s> = "❲" s "❳"
   comment = "⌈" upto<"⌉">
