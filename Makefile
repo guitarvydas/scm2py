@@ -1,7 +1,7 @@
 #	'ensure that formatted text option in draw.io is disabled everywhere'
 
-#SRC=test.scm
-SRC=prolog.scm
+SRC=test.scm
+@SRC=prolog.scm
 
 all:
 	./0D/das2json/das2json t2t.drawio

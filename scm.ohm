@@ -10,10 +10,11 @@ scm {
 
   List = "(" ListOrAtom* ")"
   ListOrAtom =
-    | List
-    | number
-    | string
-    | Atom
+    | "(" sym<"null?"> ListOrAtom ")" -- nullp
+    | List -- list
+    | number -- number
+    | string -- string
+    | Atom -- atom
   Atom = "❲" upto<"❳">
   bracket = "❲" | "❳"
   sq = "'"

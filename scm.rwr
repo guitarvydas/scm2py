@@ -8,7 +8,11 @@ scm {
   Item_toplevel [x] = ‛«x»’
 
   List [lb xs+ rb] = ‛«lb»«xs»«rb»’
-  ListOrAtom [x] = ‛«x»’
+  ListOrAtom_nullp [lb _null arg rb] = ‛ isinstance(«arg», list) ’
+  ListOrAtom_list [x] = ‛«x»’
+  ListOrAtom_number [x] = ‛«x»’
+  ListOrAtom_string [x] = ‛«x»’
+  ListOrAtom_atom [x] = ‛«x»’
   Atom [lb uptorb] = ‛«lb»«uptorb»’
   bracket [c] = ‛«c»’
   sq [c] = ‛«c»’
