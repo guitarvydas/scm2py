@@ -14,6 +14,8 @@ scm {
     | "(" sym<"string=?"> ListOrAtom ListOrAtom")" -- stringeq
     | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
     | "(" sym<"pair?"> ListOrAtom ")" -- pair
+    | "(" List Expr ")" -- anonfuncall
+    | "(" Atom Expr ")" -- funcall
     | List -- list
     | number -- number
     | string -- string
