@@ -9,6 +9,7 @@ scm {
 
   List [lb xs+ rb] = ‛«lb»«xs»«rb»’
   ListOrAtom_nullp [lb _null arg rb] = ‛ isinstance(«arg», list) ’
+  ListOrAtom_stringeq [lb _stringeq arg1 arg2 rb] = ‛ («arg1» == «arg2») ’
   ListOrAtom_list [x] = ‛«x»’
   ListOrAtom_number [x] = ‛«x»’
   ListOrAtom_string [x] = ‛«x»’

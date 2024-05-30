@@ -11,6 +11,7 @@ scm {
   List = "(" ListOrAtom* ")"
   ListOrAtom =
     | "(" sym<"null?"> ListOrAtom ")" -- nullp
+    | "(" sym<"string=?"> ListOrAtom ListOrAtom")" -- stringeq
     | List -- list
     | number -- number
     | string -- string
