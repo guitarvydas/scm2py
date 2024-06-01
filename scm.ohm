@@ -48,8 +48,8 @@ scm {
   Param = Atom
   Arg = Atom
 
-  IfThenClause = "(" ~"else" Expr Expr ")"
-  ElseClause = "(" "else" Expr ")"
+  IfThenClause = "(" ~sym<"else"> Expr Expr ")"
+  ElseClause = "(" sym<"else"> Expr ")"
 
   // lists inside of quote are not exprs, they are list constructors
   QuotedContents =
