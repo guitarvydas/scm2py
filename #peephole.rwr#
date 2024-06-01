@@ -1,0 +1,11 @@
+peephole {
+  main [item+] = ‛«item»’
+  item_rec [lb i+ rb] = ‛«lb»«i»«rb»’
+  item_save [_save ws _temps item+ rb] = ‛«_save»«ws»«_temps»«item»«rb»’
+  item_elif [_elif item+ _colon] = ‛ elif «item»:’
+  item_other [i] = ‛«i»’
+  inneritem_rec [lb i+ rb] = ‛«lb»«i»«rb»’
+  inneritem_save [_save ws _temps inneritem+ rb] = ‛«inneritem»’
+  inneritem_elif [_elif item+ _colon] = ‛ elif «item»:’
+  inneritem_other [i] = ‛«i»’
+}

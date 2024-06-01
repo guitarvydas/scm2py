@@ -1,6 +1,6 @@
 scm {
   Main [Item+] = ‛«Item»’
-  Item_function [lb _def lb2 functionname args* rb2 body rb] = ‛\n❲def❳ «functionname» («args»):⤷\n_temps = []\n_newtemp (_temps)⤷\n«body»⤶\nreturn _temps.pop ()⤶\n’
+  Item_function [lb _def lb2 functionname args* rb2 body rb] = ‛\n❲def❳ «functionname» («args»):⤷\n_temps = []\n_newtemp (_temps)⤷«body»⤶\nreturn _temps.pop ()⤶\n’
   Item_var [lb _def name body rb] = ‛\n«name» = «body»’
   Item_comment [x] = ‛«x»’
   Item_number [x] = ‛«x»’
@@ -8,10 +8,10 @@ scm {
   Item_toplevel [x] = ‛«x»’
 
   List [lb xs+ rb] = ‛«lb»«xs»«rb»’
-  ListOrAtom_cond [lb _cond ifthenclause+ elseclause? rb] = ‛ _newtemp (_temps)⤷\nif False:⤷\npass⤶«ifthenclause»«elseclause»⤶\n_mergetemps (_temps)’
+  ListOrAtom_cond [lb _cond ifthenclause+ elseclause? rb] = ‛ _newtemp (_temps)⤷if False:⤷\npass⤶«ifthenclause»«elseclause»⤶\n_mergetemps (_temps)’
   ListOrAtom_nullp [lb _null arg rb] = ‛ isinstance(«arg», list) ’
   ListOrAtom_stringeq [lb _stringeq arg1 arg2 rb] = ‛ («arg1» == «arg2») ’
-  ListOrAtom_let [lb _let lb2 letbinding+ rb2 body rb] = ‛_newtemp (_temps)⤷\n«letbinding»\n«body»⤶\n_mergetemps (_temps)’
+  ListOrAtom_let [lb _let lb2 letbinding+ rb2 body rb] = ‛_newtemp (_temps)⤷«letbinding»\n«body»⤶\n_mergetemps (_temps)’
   ListOrAtom_pair [lb _pair arg rb] = ‛ isinstance («arg», list) ’
   ListOrAtom_save [v] = ‛«v»’
 

@@ -8,10 +8,6 @@
                 "id": 19
             },
             {
-                "name": "?B",
-                "id": 20
-            },
-            {
                 "name": "pass2",
                 "id": 21
             },
@@ -21,23 +17,23 @@
             },
             {
                 "name": "Read Text File",
-                "id": 36
+                "id": 39
+            },
+            {
+                "name": "peephole",
+                "id": 48
+            },
+            {
+                "name": "?A",
+                "id": 51
             },
             {
                 "name": "pass3",
                 "id": 52
             },
             {
-                "name": "peephole",
-                "id": 60
-            },
-            {
-                "name": "?A",
-                "id": 62
-            },
-            {
                 "name": "t2t",
-                "id": 64
+                "id": 63
             }
         ],
         "connections": [
@@ -47,25 +43,12 @@
                     "name": "",
                     "id": 0
                 },
-                "source_port": "ohm",
-                "target": {
-                    "name": "t2t",
-                    "id": 64
-                },
-                "target_port": "ohm"
-            },
-            {
-                "dir": 0,
-                "source": {
-                    "name": "",
-                    "id": 0
-                },
-                "source_port": "support3",
+                "source_port": "ohm3",
                 "target": {
                     "name": "pass3",
                     "id": 52
                 },
-                "target_port": "support"
+                "target_port": "ohm"
             },
             {
                 "dir": 0,
@@ -86,12 +69,12 @@
                     "name": "",
                     "id": 0
                 },
-                "source_port": "ohm3",
+                "source_port": "support3",
                 "target": {
                     "name": "pass3",
                     "id": 52
                 },
-                "target_port": "ohm"
+                "target_port": "support"
             },
             {
                 "dir": 0,
@@ -112,10 +95,10 @@
                     "name": "",
                     "id": 0
                 },
-                "source_port": "support2",
+                "source_port": "supportp",
                 "target": {
-                    "name": "pass2",
-                    "id": 21
+                    "name": "peephole",
+                    "id": 48
                 },
                 "target_port": "support"
             },
@@ -125,12 +108,12 @@
                     "name": "",
                     "id": 0
                 },
-                "source_port": "rwr2",
+                "source_port": "support2",
                 "target": {
                     "name": "pass2",
                     "id": 21
                 },
-                "target_port": "rwr"
+                "target_port": "support"
             },
             {
                 "dir": 0,
@@ -167,7 +150,7 @@
                 "source_port": "support",
                 "target": {
                     "name": "t2t",
-                    "id": 64
+                    "id": 63
                 },
                 "target_port": "support"
             },
@@ -180,9 +163,22 @@
                 "source_port": "rwr",
                 "target": {
                     "name": "t2t",
-                    "id": 64
+                    "id": 63
                 },
                 "target_port": "rwr"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "ohm",
+                "target": {
+                    "name": "t2t",
+                    "id": 63
+                },
+                "target_port": "ohm"
             },
             {
                 "dir": 0,
@@ -193,9 +189,22 @@
                 "source_port": "grammar&#xa;name",
                 "target": {
                     "name": "t2t",
-                    "id": 64
+                    "id": 63
                 },
                 "target_port": "grammar&#xa;name"
+            },
+            {
+                "dir": 0,
+                "source": {
+                    "name": "",
+                    "id": 0
+                },
+                "source_port": "",
+                "target": {
+                    "name": "Read Text File",
+                    "id": 39
+                },
+                "target_port": ""
             },
             {
                 "dir": 0,
@@ -206,7 +215,7 @@
                 "source_port": "grammar&#xa;namep",
                 "target": {
                     "name": "peephole",
-                    "id": 60
+                    "id": 48
                 },
                 "target_port": "grammar&#xa;name"
             },
@@ -219,7 +228,7 @@
                 "source_port": "ohmp",
                 "target": {
                     "name": "peephole",
-                    "id": 60
+                    "id": 48
                 },
                 "target_port": "ohm"
             },
@@ -232,7 +241,7 @@
                 "source_port": "rwrp",
                 "target": {
                     "name": "peephole",
-                    "id": 60
+                    "id": 48
                 },
                 "target_port": "rwr"
             },
@@ -242,23 +251,23 @@
                     "name": "",
                     "id": 0
                 },
-                "source_port": "supportp",
+                "source_port": "rwr2",
                 "target": {
-                    "name": "peephole",
-                    "id": 60
+                    "name": "pass2",
+                    "id": 21
                 },
-                "target_port": "support"
+                "target_port": "rwr"
             },
             {
-                "dir": 0,
+                "dir": 1,
                 "source": {
-                    "name": "",
-                    "id": 0
+                    "name": "pass2",
+                    "id": 21
                 },
                 "source_port": "",
                 "target": {
-                    "name": "Read Text File",
-                    "id": 36
+                    "name": "pass3",
+                    "id": 52
                 },
                 "target_port": ""
             },
@@ -272,6 +281,19 @@
                 "target": {
                     "name": "$ node indenter.js",
                     "id": 30
+                },
+                "target_port": ""
+            },
+            {
+                "dir": 1,
+                "source": {
+                    "name": "t2t",
+                    "id": 63
+                },
+                "source_port": "",
+                "target": {
+                    "name": "pass2",
+                    "id": 21
                 },
                 "target_port": ""
             },
@@ -284,33 +306,7 @@
                 "source_port": "",
                 "target": {
                     "name": "?A",
-                    "id": 62
-                },
-                "target_port": ""
-            },
-            {
-                "dir": 1,
-                "source": {
-                    "name": "pass2",
-                    "id": 21
-                },
-                "source_port": "",
-                "target": {
-                    "name": "pass3",
-                    "id": 52
-                },
-                "target_port": ""
-            },
-            {
-                "dir": 1,
-                "source": {
-                    "name": "t2t",
-                    "id": 64
-                },
-                "source_port": "",
-                "target": {
-                    "name": "pass2",
-                    "id": 21
+                    "id": 51
                 },
                 "target_port": ""
             },
@@ -318,7 +314,7 @@
                 "dir": 1,
                 "source": {
                     "name": "peephole",
-                    "id": 60
+                    "id": 48
                 },
                 "source_port": "",
                 "target": {
@@ -336,7 +332,7 @@
                 "source_port": "",
                 "target": {
                     "name": "peephole",
-                    "id": 60
+                    "id": 48
                 },
                 "target_port": ""
             },
@@ -344,25 +340,12 @@
                 "dir": 1,
                 "source": {
                     "name": "Read Text File",
-                    "id": 36
+                    "id": 39
                 },
                 "source_port": "",
                 "target": {
                     "name": "t2t",
-                    "id": 64
-                },
-                "target_port": ""
-            },
-            {
-                "dir": 1,
-                "source": {
-                    "name": "peephole",
-                    "id": 60
-                },
-                "source_port": "",
-                "target": {
-                    "name": "?B",
-                    "id": 20
+                    "id": 63
                 },
                 "target_port": ""
             },
@@ -382,8 +365,8 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "$ node scrubber.js",
-                    "id": 19
+                    "name": "pass3",
+                    "id": 52
                 },
                 "source_port": "\u2717",
                 "target": {
@@ -395,8 +378,8 @@
             {
                 "dir": 2,
                 "source": {
-                    "name": "pass3",
-                    "id": 52
+                    "name": "$ node scrubber.js",
+                    "id": 19
                 },
                 "source_port": "\u2717",
                 "target": {
@@ -435,7 +418,7 @@
                 "dir": 2,
                 "source": {
                     "name": "Read Text File",
-                    "id": 36
+                    "id": 39
                 },
                 "source_port": "\u2717",
                 "target": {
@@ -448,7 +431,7 @@
                 "dir": 2,
                 "source": {
                     "name": "t2t",
-                    "id": 64
+                    "id": 63
                 },
                 "source_port": "\u2717",
                 "target": {
