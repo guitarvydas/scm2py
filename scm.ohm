@@ -46,7 +46,7 @@ scm {
 
   FunctionName = Atom
   Param = Atom
-  Arg = Atom
+  Arg = ListOrAtom
 
   IfThenClause = "(" ~sym<"else"> Expr Expr ")"
   ElseClause = "(" sym<"else"> Expr ")"
