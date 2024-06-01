@@ -16,6 +16,7 @@ scm {
     | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
     | "(" sym<"pair?"> Expr ")" -- pair
     | "(" sym<"quote"> QuotedContents+ ")" -- quote
+    | "(" sym<"+"> Arg* ")" -- plus
     | "(" List Arg* ")" -- anonfuncall
     | "(" Atom Arg* ")" -- funcall
     | "(" Question Expr ")" -- lvar
