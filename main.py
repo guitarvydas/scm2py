@@ -10,12 +10,17 @@ support2 = ""
 grammar_name3 = ""
 support3 = ""
 
+grammar_namep = ""
+supportp = ""
+
 def main ():
-    global grammar_name, support, grammar_name2, support2, grammar_name3, support3
+    global grammar_name, support, grammar_name2, support2, grammar_name3, support3, grammar_namep, supportp
 
     root_project = sys.argv [1] 
     root_0D = sys.argv [2]
     i = 3
+
+    # preprocess
     grammar_name = sys.argv [i]
     i += 1
     support = sys.argv [i]
@@ -26,9 +31,16 @@ def main ():
     support2 = sys.argv [i]
     i += 1
 
+    # scm
     grammar_name3 = sys.argv [i]
     i += 1
     support3 = sys.argv [i]
+    i += 1
+
+    # peepholer
+    grammar_namep = sys.argv [i]
+    i += 1
+    supportp = sys.argv [i]
     i += 1
 
     arg = sys.argv [i]
@@ -48,7 +60,7 @@ def main ():
               show_hierarchy=False, show_connections=False, show_traces=False, show_all_outputs=False)
 
 def start_function (root_project, root_0D, arg, main_container):
-    global grammar_name, support, grammar_name2, support2
+    global grammar_name, support, grammar_name2, support2, grammar_namep, supportp
 
     # grammar name, ohm, rwr, and, support filenames
     g = zd.new_datum_string (grammar_name)
@@ -100,6 +112,23 @@ def start_function (root_project, root_0D, arg, main_container):
 
     g = zd.new_datum_string (support3)
     msg = zd.make_message("support3", g)
+    zd.inject (main_container, msg)
+
+
+    g = zd.new_datum_string (grammar_namep)
+    msg = zd.make_message("grammar&#xa;namep", g)
+    zd.inject (main_container, msg)
+
+    g = zd.new_datum_string (grammar_namep + ".ohm")
+    msg = zd.make_message("ohmp", g)
+    zd.inject (main_container, msg)
+
+    g = zd.new_datum_string (grammar_namep + ".rwr")
+    msg = zd.make_message("rwrp", g)
+    zd.inject (main_container, msg)
+
+    g = zd.new_datum_string (supportp)
+    msg = zd.make_message("supportp", g)
     zd.inject (main_container, msg)
 
 

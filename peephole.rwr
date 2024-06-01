@@ -1,0 +1,5 @@
+peephole {
+  main [item+] = ‛«item»’
+  item_save [_save ws _temps item rb] = ‛«_save»«ws»«_temps»«item»«rb»’
+  item_other [any] = ‛«any»’
+}

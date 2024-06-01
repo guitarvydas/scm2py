@@ -1,0 +1,6 @@
+peephole {
+  main = item+
+  item =
+    | "_save " spaces "(_temps, " item ")" -- save
+    | any -- other
+}

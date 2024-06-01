@@ -15,6 +15,9 @@ scm {
     | "(" sym<"string=?"> Expr Expr ")" -- stringeq
     | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
     | "(" sym<"pair?"> Expr ")" -- pair
+    | SaveListOrAtom -- save
+
+  SaveListOrAtom =
     | "(" sym<"quote"> QuotedContents+ ")" -- quote
     | "(" sym<"+"> Arg* ")" -- plus
     | "(" List Arg* ")" -- anonfuncall
@@ -24,6 +27,7 @@ scm {
     | number -- number
     | string -- string
     | Atom -- atom
+    
   Atom = "❲" upto<"❳">
   bracket = "❲" | "❳"
   sq = "'"
@@ -31,8 +35,7 @@ scm {
   Question = "\"?\""
   LetBinding = "(" Atom Expr ")"
   Expr = ListOrAtom
-  Body = ReturningExpr
-  ReturningExpr = Expr
+  Body = Expr
 
   sym<s> = "❲" s "❳"
   comment = "⌈" upto<"⌉">
