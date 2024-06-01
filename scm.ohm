@@ -16,8 +16,8 @@ scm {
     | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
     | "(" sym<"pair?"> Expr ")" -- pair
     | "(" sym<"quote"> QuotedContents+ ")" -- quote
-    | "(" List Expr* ")" -- anonfuncall
-    | "(" Atom Expr* ")" -- funcall
+    | "(" List Arg* ")" -- anonfuncall
+    | "(" Atom Arg* ")" -- funcall
     | "(" Question Expr ")" -- lvar
     | List -- list
     | number -- number
@@ -28,7 +28,7 @@ scm {
   sq = "'"
 
   Question = "\"?\""
-  LetBinding = "(" Atom ListOrAtom ")"
+  LetBinding = "(" Atom Expr ")"
   Expr = ListOrAtom
   Body = ReturningExpr
   ReturningExpr = Expr
@@ -46,8 +46,9 @@ scm {
 
   FunctionName = Atom
   Param = Atom
+  Arg = Atom
 
-  IfThenClause = "(" Expr Expr ")"
+  IfThenClause = "(" ~"else" Expr Expr ")"
   ElseClause = "(" "else" Expr ")"
 
   // lists inside of quote are not exprs, they are list constructors

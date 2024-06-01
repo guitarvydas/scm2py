@@ -41,6 +41,7 @@ scm {
 
   FunctionName [n] = ‛«n»’
   Param [n] = ‛«n», ’
+  Arg [n] = ‛«n», ’
 
   IfThenClause [lb test e rb] = ‛\nelif «test»:⤷\n«e»⤶’
   ElseClause [lb _else e rb] = ‛\nelse:⤷\n«e»⤶’
