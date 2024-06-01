@@ -1,6 +1,6 @@
 scm {
   Main [Item+] = ‛«Item»’
-  Item_function [lb _def lb2 functionname args* rb2 body rb] = ‛\n❲def❳ «functionname» («args»)«rb2»:⤷\n«body»⤶\n«rb»’
+  Item_function [lb _def lb2 functionname args* rb2 body rb] = ‛\n❲def❳ «functionname» («args»):⤷\n«body»⤶\n’
   Item_var [lb _def name body rb] = ‛\n«name» = «body»’
   Item_comment [x] = ‛«x»’
   Item_number [x] = ‛«x»’
@@ -40,7 +40,7 @@ scm {
   upto [cs* right] = ‛«cs»«right»’
 
   FunctionName [n] = ‛«n»’
-  Arg [n] = ‛ «n»’
+  Param [n] = ‛«n», ’
 
   IfThenClause [lb test e rb] = ‛\nelif «test»:⤷\n«e»⤶’
   ElseClause [lb _else e rb] = ‛\nelse:⤷\n«e»⤶’

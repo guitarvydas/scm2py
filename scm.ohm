@@ -1,7 +1,7 @@
 scm {
  Main = Item+
  Item =
-   | "(" sym<"define"> "(" FunctionName Arg* ")" Body ")" -- function
+   | "(" sym<"define"> "(" FunctionName Param* ")" Body ")" -- function
    | "(" sym<"define"> Atom Body ")" -- var
    | comment -- comment
    | number -- number
@@ -45,7 +45,7 @@ scm {
   space += comment
 
   FunctionName = Atom
-  Arg = Atom
+  Param = Atom
 
   IfThenClause = "(" Expr Expr ")"
   ElseClause = "(" "else" Expr ")"
