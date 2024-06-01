@@ -1,8 +1,8 @@
 scm {
  Main = Item+
  Item =
-   | "(" sym<"define"> "(" FunctionName Arg* ")" ListOrAtom ")" -- function
-   | "(" sym<"define"> Atom ListOrAtom ")" -- var
+   | "(" sym<"define"> "(" FunctionName Arg* ")" Body ")" -- function
+   | "(" sym<"define"> Atom Body ")" -- var
    | comment -- comment
    | number -- number
    | string -- string
@@ -10,12 +10,15 @@ scm {
 
   List = "(" ListOrAtom* ")"
   ListOrAtom =
-    | "(" sym<"null?"> ListOrAtom ")" -- nullp
-    | "(" sym<"string=?"> ListOrAtom ListOrAtom")" -- stringeq
+    | "(" sym<"cond"> IfThenClause+ ElseClause? ")" -- cond
+    | "(" sym<"null?"> Expr ")" -- nullp
+    | "(" sym<"string=?"> Expr Expr ")" -- stringeq
     | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
-    | "(" sym<"pair?"> ListOrAtom ")" -- pair
-    | "(" List Expr ")" -- anonfuncall
-    | "(" Atom Expr ")" -- funcall
+    | "(" sym<"pair?"> Expr ")" -- pair
+    | "(" sym<"quote"> QuotedContents+ ")" -- quote
+    | "(" List Expr* ")" -- anonfuncall
+    | "(" Atom Expr* ")" -- funcall
+    | "(" Question Expr ")" -- lvar
     | List -- list
     | number -- number
     | string -- string
@@ -24,8 +27,11 @@ scm {
   bracket = "❲" | "❳"
   sq = "'"
 
+  Question = "\"?\""
   LetBinding = "(" Atom ListOrAtom ")"
   Expr = ListOrAtom
+  Body = ReturningExpr
+  ReturningExpr = Expr
 
   sym<s> = "❲" s "❳"
   comment = "⌈" upto<"⌉">
@@ -40,5 +46,16 @@ scm {
 
   FunctionName = Atom
   Arg = Atom
+
+  IfThenClause = "(" Expr Expr ")"
+  ElseClause = "(" "else" Expr ")"
+
+  // lists inside of quote are not exprs, they are list constructors
+  QuotedContents =
+    | "(" ")" -- nil
+    | "(" QuotedContents+ ")" -- list
+    | number -- number
+    | string -- string
+    | Atom -- atom
   
 }

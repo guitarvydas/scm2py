@@ -1,10 +1,5 @@
-(define (resolveArgsHelper args accumulator bindings)
-  (cond ((null? args)
-         accumulator)
-        (else
-         (resolveArgsHelper (cdr args) 
-                              (AppendInefficient accumulator
-                                                 (list (value (car args) bindings)))
-                              bindings))))
+(define db  '(    ((some 0)) ))
 
-(newline)
+					; (define db Cons (
+					;   Cons (
+					;      Cons ("some", Cons (0, nil)))))

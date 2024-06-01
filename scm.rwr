@@ -8,12 +8,15 @@ scm {
   Item_toplevel [x] = ‛«x»’
 
   List [lb xs+ rb] = ‛«lb»«xs»«rb»’
+  ListOrAtom_cond [lb _cond ifthenclause+ elseclause? rb] = ‛ if False:⤷\npass⤶«ifthenclause»«elseclause»’
   ListOrAtom_nullp [lb _null arg rb] = ‛ isinstance(«arg», list) ’
   ListOrAtom_stringeq [lb _stringeq arg1 arg2 rb] = ‛ («arg1» == «arg2») ’
   ListOrAtom_let [lb _let lb2 letbinding+ rb2 body rb] = ‛«letbinding»\n«body»’
   ListOrAtom_pair [lb _pair arg rb] = ‛ isintance («arg», list) ’
-  ListOrAtom_anonfuncall [lb anon arg rb] = ‛ «anon» («arg») ’
-  ListOrAtom_funcall [lb name arg rb] = ‛ «name» («arg») ’
+  ListOrAtom_anonfuncall [lb anon arg* rb] = ‛ «anon» («arg») ’
+  ListOrAtom_funcall [lb name arg* rb] = ‛ «name» («arg») ’
+  ListOrAtom_lvar [lb _q e rb] =  ‛ lvar («e») ’
+  ListOrAtom_quote [lb _quote contents+ rb] = ‛«contents»’
   ListOrAtom_list [x] = ‛«x»’
   ListOrAtom_number [x] = ‛«x»’
   ListOrAtom_string [x] = ‛«x»’
@@ -22,8 +25,11 @@ scm {
   bracket [c] = ‛«c»’
   sq [c] = ‛«c»’
 
+  Question [q] = ‛«q»’
   LetBinding [lb atom val rb] = ‛\n«atom» = «val»’
   Expr [listOrAtom] = ‛«listOrAtom»’
+  Body [re] = ‛«re»’
+  ReturningExpr [e] = ‛«e»’
   
   sym [lb s rb] = ‛«lb»«s»«rb»’
   comment [lb uptorb] = ‛«lb»«uptorb»’
@@ -35,4 +41,14 @@ scm {
 
   FunctionName [n] = ‛«n»’
   Arg [n] = ‛ «n»’
+
+  IfThenClause [lb test e rb] = ‛\nelif «test»:⤷\n«e»⤶’
+  ElseClause [lb _else e rb] = ‛\nelse:⤷\n«e»⤶’
+
+  QuotedContents_nil [lb rb] = ‛[],’
+  QuotedContents_list [lb contents+ rb] = ‛[«contents»],’
+  QuotedContents_number [n] = ‛«n»,’
+  QuotedContents_string [s] = ‛«s»,’
+  QuotedContents_atom [a] =  ‛"«a»",’
+
 }
