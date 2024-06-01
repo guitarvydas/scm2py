@@ -3,5 +3,6 @@ peephole {
   item_save [_save ws _temps item+ rb] = ‛«_save»«ws»«_temps»«item»«rb»’
   item_other [any] = ‛«any»’
   inneritem_save [_save ws _temps inneritem+ rb] = ‛«inneritem»’
+  inneritem_rec [lb i+ rb] = ‛«lb»«i»«rb»’
   inneritem_other [any] = ‛«any»’
 }

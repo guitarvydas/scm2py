@@ -4,6 +4,7 @@ peephole {
     | "_save " spaces "(_temps, " inneritem+ ")" -- save
     | any -- other
   inneritem =
+    | "(" inneritem+ ")" -- rec
     | "_save " spaces "(_temps, " inneritem+ ")" -- save
     | ~")" any -- other
 }
