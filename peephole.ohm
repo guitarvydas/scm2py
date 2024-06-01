@@ -2,9 +2,10 @@ peephole {
   main = item+
   item =
     | "_save " spaces "(_temps, " inneritem+ ")" -- save
+    | "elif " inneritem+ ":" -- elif
     | any -- other
   inneritem =
     | "(" inneritem+ ")" -- rec
     | "_save " spaces "(_temps, " inneritem+ ")" -- save
-    | ~")" any -- other
+    | ~")" ~":" any -- other
 }
