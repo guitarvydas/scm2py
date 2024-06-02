@@ -1,0 +1,66 @@
+scm {
+ Main = Item+
+ Item =
+   | "(" sym<"define"> "(" FunctionName Param* ")" Body ")" -- function
+   | "(" sym<"define"> Atom Body ")" -- var
+   | comment -- comment
+   | number -- number
+   | string -- string
+   | List -- toplevel
+
+  List = "(" ListOrAtom* ")"
+  ListOrAtom =
+    | "(" sym<"cond"> IfThenClause+ ElseClause? ")" -- cond
+    | "(" sym<"null?"> Expr ")" -- nullp
+    | "(" sym<"string=?"> Expr Expr ")" -- stringeq
+    | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
+    | "(" sym<"pair?"> Expr ")" -- pair
+    | SaveListOrAtom -- save
+
+  SaveListOrAtom =
+    | "(" sym<"quote"> QuotedContents+ ")" -- quote
+    | "(" sym<"+"> Arg* ")" -- plus
+    | "(" List Arg* ")" -- anonfuncall
+    | "(" Atom Arg* ")" -- funcall
+    | "(" Question Expr ")" -- lvar
+    | List -- list
+    | number -- number
+    | string -- string
+    | Atom -- atom
+    
+  Atom = "❲" upto<"❳">
+  bracket = "❲" | "❳"
+  sq = "'"
+
+  Question = "\"?\""
+  LetBinding = "(" Atom Expr ")"
+  Expr = ListOrAtom
+  Body = Expr
+
+  sym<s> = "❲" s "❳"
+  comment = "⌈" upto<"⌉">
+  number = digit+
+  string = bq upto<eq>
+  bq = "“"
+  eq = "”"
+
+  upto<x> = (~x any)* x
+
+  space += comment
+
+  FunctionName = Atom
+  Param = Atom
+  Arg = ListOrAtom
+
+  IfThenClause = "(" ~sym<"else"> Expr Expr ")"
+  ElseClause = "(" sym<"else"> Expr ")"
+
+  // lists inside of quote are not exprs, they are list constructors
+  QuotedContents =
+    | "(" ")" -- nil
+    | "(" QuotedContents+ ")" -- list
+    | number -- number
+    | string -- string
+    | Atom -- atom
+  
+}

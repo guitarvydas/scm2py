@@ -1,29 +1,31 @@
 scm {
  Main = Item+
- Item =
-   | "(" sym<"define"> "(" FunctionName Param* ")" Body ")" -- function
-   | "(" sym<"define"> Atom Body ")" -- var
-   | comment -- comment
-   | number -- number
-   | string -- string
-   | List -- toplevel
+  Item =
+    | "(" sym<"define"> "(" FunctionName Param_rec ")" Body_rec ")" -- function
+    | "(" sym<"define"> Atom Body_rec ")" -- var
+    | comment -- comment
+    | "(" FunctionName TopLevelCallArg_rec ")" -- toplevelcall
 
-  List = "(" ListOrAtom* ")"
-  ListOrAtom =
-    | "(" sym<"cond"> IfThenClause+ ElseClause? ")" -- cond
+  Body_rec =
+    | Statement Body_rec? -- statement
+    | Expr Body_rec? -- expr
+
+  Statement =
+    // these create a new _temps environment
+    | "(" sym<"cond"> IfThenClause_rec ElseClause? ")" -- cond
+    | "(" sym<"let"> "(" LetBinding_rec ")" Expr ")" -- let
+    | "(" sym<"set!"> Expr ")" -- set
+
+  Expr =
     | "(" sym<"null?"> Expr ")" -- nullp
     | "(" sym<"string=?"> Expr Expr ")" -- stringeq
-    | "(" sym<"let"> "(" LetBinding+ ")" Expr ")" -- let
     | "(" sym<"pair?"> Expr ")" -- pair
-    | SaveListOrAtom -- save
-
-  SaveListOrAtom =
-    | "(" sym<"quote"> QuotedContents+ ")" -- quote
-    | "(" sym<"+"> Arg* ")" -- plus
-    | "(" List Arg* ")" -- anonfuncall
-    | "(" Atom Arg* ")" -- funcall
+    | "(" sym<"quote"> QuotedContents_rec ")" -- quote
     | "(" Question Expr ")" -- lvar
-    | List -- list
+    | "(" sym<"+"> PlusArg_rec ")" -- plus
+    | "(" sym<"and"> AndArg_rec ")" -- and
+    | "(" List CallArg_rec ")" -- reject_anonfuncall
+    | "(" Atom CallArg_rec ")" -- funcall
     | number -- number
     | string -- string
     | Atom -- atom
@@ -33,9 +35,6 @@ scm {
   sq = "'"
 
   Question = "\"?\""
-  LetBinding = "(" Atom Expr ")"
-  Expr = ListOrAtom
-  Body = Expr
 
   sym<s> = "❲" s "❳"
   comment = "⌈" upto<"⌉">
@@ -50,17 +49,27 @@ scm {
 
   FunctionName = Atom
   Param = Atom
-  Arg = ListOrAtom
-
-  IfThenClause = "(" ~sym<"else"> Expr Expr ")"
-  ElseClause = "(" sym<"else"> Expr ")"
+  Arg = Expr
 
   // lists inside of quote are not exprs, they are list constructors
-  QuotedContents =
+  QuotedContents_rec =
     | "(" ")" -- nil
-    | "(" QuotedContents+ ")" -- list
+    | "(" QuotedContents_rec ")" -- list
     | number -- number
     | string -- string
     | Atom -- atom
+
+
+
+
+  PlusArg_rec = Body_rec PlusArg_rec?
+  AndArg_rec = Body_rec AndArg_rec?
+  CallArg_rec = Body_rec CallArg_rec?
+  TopLevelCallArg_rec = Body_rec TopLevelCallArg_rec?
+  Param_rec = Atom Param_rec?
+  IfThenClause_rec = "(" ~sym<"else"> Expr Body_rec ")" IfThenClause_rec?
+  ElseClause = "(" sym<"else"> Body_rec ")"
+  LetBinding_rec = "(" Atom Body_rec ")" LetBinding_rec?
+
   
 }

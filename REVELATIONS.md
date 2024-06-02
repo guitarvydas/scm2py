@@ -1,0 +1,4 @@
+- scm->python is LLL->HLL - not enough semantic info in the scm code to infer what's necessary in Python code in general, so specialize for prolog.scm code only ; we cannot generalize LLL->HLL due to obfuscated semantic info, trying to over-generalize leads to gotchas
+- use recursion instead of +/* for high level syntactic constructs
+- going in the other direction HLL->LLL, Python->scm, should be easier since the syntactic constructs of Python are well-defined and are but a subset of what scm can do.
+- maybe: rewrite prolog.scm in SCN, then ->python, etc.
